@@ -5,13 +5,16 @@ const authentication = require('../Authentication/authentication')
 
 app.use(express.json())
 
-app.get('/auth/users', (req, res) => {
-    res.json(authentication.getUsers())
+app.get('/auth/users', async (req, res) => {
+    const users = await authentication.getUsers()
+
+    res.json(users)
 })
 
 
 app.post('/auth/register', async (req, res) => {
     const user = {
+        email: req.body.email,
         username: req.body.username,
         password: req.body.password
     }
@@ -21,7 +24,7 @@ app.post('/auth/register', async (req, res) => {
         res.status(201).send("user added")
     }
     catch (err) {
-        res.status(400).send(err)
+        res.status(400).send(err.message)
     }
 
 })

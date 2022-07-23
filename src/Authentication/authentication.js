@@ -1,41 +1,50 @@
 const bcrypt = require('bcrypt')
 
-const users = []
+const database = require('../utils/database')
 
 const addUser = async (user) => {
 
-    const { username, password } = user
-
+    const { email, username, password } = user
     const hashedPassword = await hashPassword(password)
 
-    users.push({
-        username,
-        password: hashedPassword
-    })
+    if (await database.query('SELECT * FROM users WHERE username = $1', [username])) {
+        throw new Error('Username already exists')
+    }
+
+    await database.insert('users', { email, username, password: hashedPassword, accounts: "" })
 }
 
-const removeUser = (user) => {
-    const username = user.username
+const removeUser = async (user) => {
+    const {email, username} = user
 
-    const index = users.findIndex(user => user.username === username)
-
-    users.splice(index, 1)
+    await database.remove('users', {email, username})
 }
 
 const authenticateUser = async (reqUser) => {
     const username = reqUser.username
 
-    const user = users.find(user => user.username === username)
+    const user = 
+    await database.query('SELECT * FROM users WHERE username = $1', [username])
+    .then(res => { 
+        return res.rows[0] 
+    })
+    .catch(err => {
+        console.log(err)
+        throw new err
+    })
 
-    if (user == null) throw new NoSuchUserException(username)
+    if (!user) {
+        throw new NoSuchUserException(`No user with username ${username}`)
+    }
 
     return await comparePassword(reqUser.password, user.password)
 
 
 }
 
-const getUsers = () => {
-    return users
+const getUsers = async () => {
+    const res = await database.query('SELECT * FROM users')
+    return res.rows
 }
 
 
