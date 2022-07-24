@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 
 const authentication = require('../Authentication/authentication')
+const authorization = require('../Authorization/authorization')
 
 app.use(express.json())
 
@@ -36,16 +37,36 @@ app.post('/auth/login', async (req, res) => {
             password: req.body.password
         }
 
-        if (await authentication.authenticateUser(user))
-            res.status(200).send("user authenticated")
-        else
-            res.status(401).send("user not authenticated")
+        const auth = await authentication.authenticateUser(user)
+
+        if (!auth)
+            return res.status(401).send("user not authenticated")
+
+        const accessToken = await authorization.signAccessToken({
+            id : auth.id,
+            username : auth.username
+        })
+
+        const refreshToken = await authorization.signRefreshToken({
+            id : auth.id,
+            username : auth.username
+        })
+
+        res.status(200).json({
+            accessToken,
+            refreshToken
+        })
     }
     catch (err) {
         res.status(500).send(err.message)
     }
 
 }) 
+
+app.post('/auth/refresh', async (req, res) => {
+    // TODO: implement refresh token logic
+    res.status(200).send("refresh token")
+})
 
 
 app.listen(3000)
