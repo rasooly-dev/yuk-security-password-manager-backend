@@ -8,7 +8,7 @@ const addUser = async (user) => {
     const hashedPassword = await hashPassword(password)
 
     if (await database.query('SELECT * FROM users WHERE username = $1', [username])) {
-        throw new Error('Username already exists')
+        throw new UserAlreadyExistsException('Username already exists')
     }
 
     await database.insert('users', { email, username, password: hashedPassword, accounts: "" })
@@ -37,7 +37,19 @@ const authenticateUser = async (reqUser) => {
         throw new NoSuchUserException(`No user with username ${username}`)
     }
 
-    return await comparePassword(reqUser.password, user.password)
+    const check = await comparePassword(reqUser.password, user.password)
+    
+    let retUser = {
+        id: user.id,
+        username: user.username,
+    }
+    
+    if (!check) retUser = null
+
+    return {
+        check,
+        user: retUser
+    }
 
 
 }
@@ -64,6 +76,11 @@ const comparePassword = async (password, hashedPassword) => {
 function NoSuchUserException(message) {
     this.message = message
     this.name = 'NoSuchUserException'
+}
+
+function UserAlreadyExistsException(message) {
+    this.message = message
+    this.name = 'UserAlreadyExistsException'
 }
 
 // exports

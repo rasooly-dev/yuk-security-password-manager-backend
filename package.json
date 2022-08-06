@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev-start": "nodemon ./src/Servers/auth_server.js",
+    "dev-start-test": "nodemon ./src/Test/test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -21,3 +21,19 @@ Content-Type: application/json
         "password": "test"
     }
 
+###
+GET http://localhost:4000/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTk3ODIwMDksImV4cCI6MTY1OTc4MjMwOX0.VK7JCkRBw0mDCRbCBiJ2KIj5MO9th5WpukIiOqshpsA
+Content-Type: application/json
+
+###
+POST http://localhost:3000/auth/refresh
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTk3ODA0NDYsImV4cCI6MTY1OTc4NDA0Nn0.Tf9kyUJois_Kco0kugU-7TKG5NgVJocPxTrzD3TUkjM"
+}
+
+
+
+
