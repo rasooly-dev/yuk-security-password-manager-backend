@@ -32,6 +32,18 @@ const insert = async (table, values) => {
     await query(q)
 }
 
+const update = async (table, values, conditions) => {
+    let keys = Object.keys(values)
+    let vals = Object.values(values)
+
+    let keys_str = keys.map(key => `${key} = '${vals[keys.indexOf(key)]}'`).join(',')
+    let cond_str = conditions.map(cond => `${cond.key} = '${cond.value}'`).join(' AND ')
+
+    let q = `UPDATE ${table} SET ${keys_str} WHERE ${cond_str}`
+    await query(q)
+}
+
+
 const remove = async (table, conditions) => {
 
     let cond_str = Object.keys(conditions).map(key => `${key} = '${conditions[key]}'`).join(' AND ')
@@ -43,7 +55,9 @@ const remove = async (table, conditions) => {
 
 db_utils = {
     query,
-    insert
+    insert,
+    update,
+    remove
 }
 
 module.exports = db_utils
