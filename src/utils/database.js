@@ -37,7 +37,7 @@ const update = async (table, values, conditions) => {
     let vals = Object.values(values)
 
     let keys_str = keys.map(key => `${key} = '${vals[keys.indexOf(key)]}'`).join(',')
-    let cond_str = conditions.map(cond => `${cond.key} = '${cond.value}'`).join(' AND ')
+    let cond_str = Object.keys(conditions).map(key => `${key} = '${conditions[key]}'`).join(' AND ')
 
     let q = `UPDATE ${table} SET ${keys_str} WHERE ${cond_str}`
     await query(q)

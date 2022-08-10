@@ -31,7 +31,10 @@ const authorize = (req, res, next) => {
                 error: 'UnauthorizedTokenException'
             })
 
-        req.user = user
+        req.user = {
+            id: user.id,
+            username: user.username
+        }
         next()
     })
 }
@@ -52,7 +55,11 @@ const refresh = (req, res, next) => {
                 error: 'UnauthorizedRefreshTokenException'
             })
 
-        req.user = user
+        req.user = {
+            id: user.id,
+            username: user.username
+        }
+        
         next()
     })
 }

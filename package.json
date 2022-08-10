@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-start": "nodemon ./src/Servers/auth_server.js",
+    "dev-start-auth": "nodemon ./src/Servers/auth_server.js",
     "dev-start-test": "nodemon ./src/Test/test.js",
+    "dev-start-acc": "nodemon ./src/Servers/acc_server.js",
+    "dev-acc-test" : "node ./src/Accounts/test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
