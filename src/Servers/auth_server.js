@@ -6,11 +6,12 @@ const authorization = require('../Authorization/authorization')
 
 app.use(express.json())
 
-app.get('/auth/users', async (req, res) => {
-    const users = await authentication.getUsers()
+// USED FOR TESTING ONLY - DO NOT USE
+// app.get('/auth/users', async (req, res) => {
+//     const users = await authentication.getUsers()
 
-    res.json(users)
-})
+//     res.json(users)
+// })
 
 
 app.post('/auth/register', async (req, res) => {
