@@ -82,8 +82,6 @@ const authenticateUser = async (reqUser) => {
         check,
         user: retUser
     }
-
-
 }
 
 // Method to get all users - DO NOT USE
