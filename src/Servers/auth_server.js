@@ -13,15 +13,24 @@ app.use(express.json())
 //     res.json(users)
 // })
 
-
+/**
+ *  API Route which handles registering a 
+ * user into the service/databse
+ * 
+ * 
+ */ 
 app.post('/auth/register', async (req, res) => {
+    // create a user using information 
+    // extracted from the request
     const user = {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password
     }
 
+    // try-catch block to handle any exceptions
     try {
+        
         await authentication.addUser(user)
         res.status(201).json({
             message: 'User created'
