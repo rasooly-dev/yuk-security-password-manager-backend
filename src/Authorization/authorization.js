@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken')
  * @returns a signed access token
  */
 const signAccessToken = (user, exp) => {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, 
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: exp }
     )
 }
@@ -42,22 +42,22 @@ const authorize = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1]
 
     // check if a token was provided
-    if (!token) 
+    if (!token)
         // if no token was provided, return a response containing an error
-        return res.status(401).json({
+        return res.status(400).json({
             message: 'No token provided',
             error: 'NoTokenProvidedException'
         })
-    
+
     // verify the token
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         // if there was an error, return a response containing an error
-        if (err) 
+        if (err)
             return res.status(401).json({
                 message: 'Unauthorized token',
                 error: 'UnauthorizedTokenException'
             })
-        
+
         // if there was no error, assign the user to the request object
         req.user = {
             id: user.id,
@@ -100,13 +100,13 @@ const refresh = (req, res, next) => {
                 message: 'Unauthorized refresh token',
                 error: 'UnauthorizedRefreshTokenException'
             })
-        
+
         // if there was no error, assign the user to the request object
         req.user = {
             id: user.id,
             username: user.username
         }
-        
+
         // call the next function
         next()
     })
