@@ -5,7 +5,7 @@ const authorization = require('../Authorization/authorization')
 const express = require('express')
 const app = express()
 
-port = 4000
+const PORT = 4000
 
 
 app.get('/test', authorization.authorize, (req, res) => {
@@ -13,8 +13,8 @@ app.get('/test', authorization.authorize, (req, res) => {
 })
 
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+app.listen(PORT, () => {
+    console.log(`Example app listening at http://localhost:${PORT}`)
 })
 
 
