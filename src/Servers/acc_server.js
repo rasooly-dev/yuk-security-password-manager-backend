@@ -41,7 +41,7 @@ app.post('/accounts/update', authorization.authorize, async (req, res) => {
         await account_utils.storeAccounts(user, accounts)
 
         // return a success response
-        res.status(200).json({
+        return res.status(200).json({
             message: 'Accounts updated'
         })
     }
