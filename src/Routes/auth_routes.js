@@ -1,15 +1,11 @@
 const express = require('express')
-const app = express()
+const router = express.Router()
 
 const authentication = require('../Authentication/authentication')
 const authorization = require('../Authorization/authorization')
 
-app.use(express.json())
-
-const PORT = 3000
-
 // USED FOR TESTING ONLY - DO NOT USE
-// app.get('/auth/users', async (req, res) => {
+// router.get('/users', async (req, res) => {
 //     const users = await authentication.getUsers()
 
 //     res.json(users)
@@ -34,7 +30,7 @@ const PORT = 3000
  *  ^error - error message if the request failed
  * 
  */
-app.post('/auth/register', async (req, res) => {
+router.post('/register', async (req, res) => {
     // create a user using information 
     // extracted from the request
     const user = {
@@ -86,7 +82,7 @@ app.post('/auth/register', async (req, res) => {
  *  ^refresh token - JWT refresh token if the request was successful
  * 
  */
-app.post('/auth/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         // grab the username and password from the request body
         const user = {
@@ -169,7 +165,7 @@ app.post('/auth/login', async (req, res) => {
  * ^access token - JWT access token if the request was successful
  * 
  */
-app.post('/auth/refresh', authorization.refresh, async (req, res) => {
+router.post('/refresh', authorization.refresh, async (req, res) => {
 
     // create a JWT access token for the user
     const accessToken = await authorization.signAccessToken({
@@ -185,5 +181,4 @@ app.post('/auth/refresh', authorization.refresh, async (req, res) => {
     })
 })
 
-// start the server on the specified port
-app.listen(PORT)
+module.exports = router

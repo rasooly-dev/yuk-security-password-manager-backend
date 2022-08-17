@@ -1,12 +1,8 @@
 const express = require('express')
-const app = express()
-
-app.use(express.json())
+const router = express.Router()
 
 const account_utils = require('../Accounts/accounts')
 const authorization = require('../Authorization/authorization')
-
-const PORT = 3500
 
 /**
  * API Route which handles updating
@@ -29,7 +25,7 @@ const PORT = 3500
  * ^error - error message if the request failed
  * 
  */
-app.post('/accounts/update', authorization.authorize, async (req, res) => {
+router.post('/update', authorization.authorize, async (req, res) => {
     // extract the user's encrypted accounts
     // from the request body
     const accounts = req.body.accounts
@@ -87,7 +83,7 @@ app.post('/accounts/update', authorization.authorize, async (req, res) => {
  *             if the request was successful
  * 
  */
-app.get('/accounts', authorization.authorize, async (req, res) => {
+router.get('/', authorization.authorize, async (req, res) => {
 
     const user = req.user
 
@@ -112,5 +108,4 @@ app.get('/accounts', authorization.authorize, async (req, res) => {
     }
 })
 
-// start the server on the specified port
-app.listen(PORT)
+module.exports = router
