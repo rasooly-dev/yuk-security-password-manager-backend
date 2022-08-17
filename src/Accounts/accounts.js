@@ -101,6 +101,5 @@ function NoAccountsProvidedException (message) {
 // exports
 module.exports = {
     storeAccounts,
-    getAccounts,
-    test
+    getAccounts
 }

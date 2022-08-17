@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-start-auth": "nodemon ./src/Servers/auth_server.js",
+    "dev-start": "nodemon ./src/Servers/server.js",
     "dev-start-test": "nodemon ./src/Test/test.js",
-    "dev-start-acc": "nodemon ./src/Servers/acc_server.js",
-    "dev-acc-test" : "node ./src/Accounts/test.js",
+    "dev-acc-test": "node ./src/Accounts/test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +23,7 @@
   "dependencies": {
     "aes256": "^1.1.0",
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "firebase-admin": "^11.0.0",
