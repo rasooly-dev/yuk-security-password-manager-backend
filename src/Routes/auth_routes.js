@@ -116,10 +116,16 @@ router.post('/login', async (req, res) => {
         }, '1h')
 
         // return a success response
-        res.status(200).json({
+        res
+        .status(200)
+        .cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'Strict'
+        })
+        .json({
             message: 'User authenticated',
-            accessToken,
-            refreshToken
+            accessToken
         })
     }
 
@@ -134,7 +140,7 @@ router.post('/login', async (req, res) => {
             })
 
         // return a server error response if the login check failed
-        res.status(500).json({
+        return res.status(500).json({
             message: err.message,
             error: err.name
         })

@@ -81,7 +81,7 @@ const authorize = (req, res, next) => {
  */
 const refresh = (req, res, next) => {
     // grab the refresh token from the request
-    const refreshToken = req.body.refreshToken
+    const refreshToken = req.cookies.refreshToken
 
     // check if a refresh token was provided
     if (!refreshToken)
