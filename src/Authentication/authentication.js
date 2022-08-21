@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const database = require('../utils/database')
 
 /**
- * Generates a register token for a user
+ * Generates a register token for a user which expires in 5 minutes
  * 
  * @param { Object } user an object holding the user's email and username and hashed password
  * @returns a register token for the user
