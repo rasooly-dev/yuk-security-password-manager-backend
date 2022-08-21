@@ -88,7 +88,7 @@ router.post('/register', async (req, res) => {
  *  ^error - error message if the request failed
  * 
  */
-router.get('/verifyregistry', async (req, res) => {
+router.post('/verifyregistry', async (req, res) => {
     // get the token from the request parameters
     const token = req.query.token
 
