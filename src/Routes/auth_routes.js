@@ -8,6 +8,8 @@ const authorization = require('../Authorization/authorization')
 
 const mail = require('../utils/mail')
 
+let activeTokens = []
+
 // USED FOR TESTING ONLY - DO NOT USE
 // router.get('/users', async (req, res) => {
 //     const users = await authentication.getUsers()
@@ -92,6 +94,16 @@ router.post('/verifyregistry', async (req, res) => {
     // get the token from the request parameters
     const token = req.query.token
 
+    // if token is being used already, return an error
+    if (activeTokens.includes(token))
+        return res.status(400).json({
+            message: 'Registration token already being currently used',
+            error: 'InvalidRegistrationTokenException'
+        })
+    
+    // add token to the list of tokens actively being used
+    activeTokens.push(token)
+
     // try-catch block to handle any exceptions
     try {
         // verify the token
@@ -102,7 +114,7 @@ router.post('/verifyregistry', async (req, res) => {
 
         // return a success response
         res.status(201).json({
-            message: 'User created'
+            message: 'User successfully has registered...'
         })
 
     }
@@ -113,6 +125,9 @@ router.post('/verifyregistry', async (req, res) => {
             error: err.name
         })
     }
+
+    // remove the token from the list of active tokens
+    activeTokens = activeTokens.filter(t => t !== token)
 })
 
 /**

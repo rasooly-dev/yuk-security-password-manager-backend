@@ -27,9 +27,6 @@ const query = async (query, params = []) => {
         })
         .catch(err => {
             client.end()
-            console.log(query)
-            console.log(JSON.stringify(err))
-            console.log(err)
         });
 }
 
@@ -60,8 +57,6 @@ const insert = async (table, values) => {
 
     // create the query
     let q = `INSERT INTO ${table} (${keys_str}) VALUES (${vals_str})`
-
-    console.log(q, vals)
 
     // execute the query
     await query(q, vals)

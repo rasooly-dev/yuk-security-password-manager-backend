@@ -77,7 +77,7 @@ const addUser = async (user) => {
         throw new UserAlreadyExistsException('Username or email already exists')
 
     // insert the user into the database
-    await database.insert('users', { email, username, password, accounts: "" })
+    return await database.insert('users', { email, username, password, accounts: "" })
 }
 
 /**
