@@ -27,6 +27,8 @@ const query = async (query, params = []) => {
         })
         .catch(err => {
             client.end()
+            console.log(query)
+            console.log(JSON.stringify(err))
             console.log(err)
         });
 }
@@ -45,12 +47,24 @@ const insert = async (table, values) => {
 
     // create a string of the keys and values to insert
     let keys_str = keys.join(',')
-    let vals_str = vals.map(val => `'${val}'`).join(',')
+    
+    let vals_str = ''
+    for (let i = 1; i <= vals.length; i++) {
+        vals_str += '$' + i
+
+        if (i < vals.length) 
+            vals_str += ', '
+        
+    }
+
 
     // create the query
-    let q = `INSERT INTO $1 ($2) VALUES ($3)`
+    let q = `INSERT INTO ${table} (${keys_str}) VALUES (${vals_str})`
+
+    console.log(q, vals)
+
     // execute the query
-    await query(q, [table, keys_str, vals_str])
+    await query(q, vals)
 }
 
 /**
@@ -71,10 +85,10 @@ const update = async (table, values, conditions) => {
     let cond_str = Object.keys(conditions).map(key => `${key} = '${conditions[key]}'`).join(' AND ')
 
     // create the query
-    let q = `UPDATE $1 SET $2 WHERE $3`
+    let q = `UPDATE ${table} SET ${keys_str} WHERE $3`
     
     // execute the query
-    await query(q, [table, keys_str, cond_str])
+    await query(q, cond_str)
 }
 
 /**
@@ -90,10 +104,10 @@ const remove = async (table, conditions) => {
     let cond_str = Object.keys(conditions).map(key => `${key} = '${conditions[key]}'`).join(' AND ')
 
     // create the query
-    let q = `DELETE FROM $1 WHERE $2`
+    let q = `DELETE FROM ${table} WHERE $2`
 
     // execute the query
-    await query(q, [table, cond_str])
+    await query(q, cond_str)
 }
 
 
