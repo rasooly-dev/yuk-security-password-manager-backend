@@ -1,8 +1,12 @@
+require('dotenv').config('../../.env')
+
 const express = require('express')
 const router = express.Router()
 
 const authentication = require('../Authentication/authentication')
 const authorization = require('../Authorization/authorization')
+
+const mail = require('../utils/mail')
 
 // USED FOR TESTING ONLY - DO NOT USE
 // router.get('/users', async (req, res) => {
@@ -22,7 +26,7 @@ const authorization = require('../Authorization/authorization')
  * 
  * Response:
  * 
- * 201 - User successfully registered
+ * 201 - Email with verification link sent to user
  * 400 - Registration failed due to invalid parameters
  * 500 - Registration failed due to internal server error
  * 
@@ -43,11 +47,18 @@ router.post('/register', async (req, res) => {
     try {
 
         // register the user
-        await authentication.addUser(user)
+        const token = await authentication.generateAddUserToken(user)
+
+        // send the token to the user's email address
+        const info = await mail.sendEmail(
+            user.email, 
+            'Registration Confirmation', 
+            `Please click the following link to confirm your registration: ${process.env.APP_DOMAIN_LINK}/api/auth/verifyregistry?token=${token}`
+        )
 
         // return a success response
-        res.status(201).json({
-            message: 'User created'
+        res.status(200).json({
+            message: 'Email with registration confirmation sent'
         })
     }
     catch (err) {
@@ -58,6 +69,50 @@ router.post('/register', async (req, res) => {
         })
     }
 
+})
+
+/**
+ * API Route which handles verifying a
+ * user's registration token
+ * 
+ * Required parameters:
+ *  *token - token to be verified
+ * 
+ * Response:
+ * 
+ *  200 - Registration token verified & user added to database
+ *  400 - Registration token invalid
+ *  500 - Registration token verification failed due to internal server error
+ * 
+ *  *message - message indicating success or failure of the request
+ *  ^error - error message if the request failed
+ * 
+ */
+router.get('/verifyregistry', async (req, res) => {
+    // get the token from the request parameters
+    const token = req.query.token
+
+    // try-catch block to handle any exceptions
+    try {
+        // verify the token
+        const user = await authentication.verifyAddUserToken(token)
+
+        // add the user to the database
+        const add = await authentication.addUser(user)
+
+        // return a success response
+        res.status(201).json({
+            message: 'User created'
+        })
+
+    }
+    catch (err) {
+        // return a failure response
+        res.status(400).json({
+            message: err.message,
+            error: err.name
+        })
+    }
 })
 
 /**
