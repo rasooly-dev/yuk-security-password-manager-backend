@@ -14,7 +14,7 @@ const sendEmail = async (email, subject, message) => {
     })
 
     const mailOptions = {
-        from: process.env.MAIL_SUPPORT_ADDRESS,
+        from: `Yuk Security Support <${process.env.MAIL_SUPPORT_ADDRESS}>`,
         to: email,
         subject: subject,
         text: message
