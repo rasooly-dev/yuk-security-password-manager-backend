@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
         const info = await mail.sendEmail(
             user.email, 
             'Registration Confirmation', 
-            `Please click the following link to confirm your registration: ${process.env.APP_DOMAIN_LINK}/api/auth/verifyregistry?token=${token}`
+            `Please click the following link to confirm your registration: ${process.env.APP_DOMAIN_LINK}${process.env.VERIFY_REGISTRATION_ROUTE}${token}`
         )
 
         // return a success response
