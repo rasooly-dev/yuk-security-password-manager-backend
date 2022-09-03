@@ -22,6 +22,7 @@
   "homepage": "https://github.com/rasooly-dev/yuk-security-password-manager-backend#readme",
   "dependencies": {
     "aes256": "^1.1.0",
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",

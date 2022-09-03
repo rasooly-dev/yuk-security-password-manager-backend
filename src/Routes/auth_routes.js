@@ -6,6 +6,8 @@ const router = express.Router()
 const authentication = require('../Authentication/authentication')
 const authorization = require('../Authorization/authorization')
 
+const recaptcha = require('../Recaptcha/recaptcha')
+
 const mail = require('../utils/mail')
 
 let activeTokens = []
@@ -152,7 +154,8 @@ router.post('/verifyregistry', async (req, res) => {
  *  ^refresh token - JWT refresh token if the request was successful
  * 
  */
-router.post('/login', async (req, res) => {
+router.post('/login', recaptcha.verify, async (req, res) => {
+
     try {
         // grab the username and password from the request body
         const user = {
