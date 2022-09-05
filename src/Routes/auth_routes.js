@@ -141,6 +141,9 @@ router.post('/verifyregistry', async (req, res) => {
  *  *username - username of the user
  *  *password - password of the user
  * 
+ * Middleware:
+ *  *recaptcha - verifies the recaptcha token
+ * 
  * Response:
  * 
  * 200 - User successfully logged in
