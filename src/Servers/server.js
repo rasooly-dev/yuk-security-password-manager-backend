@@ -4,6 +4,8 @@ const app = express()
 const auth_routes = require('../Routes/auth_routes')
 const acc_routes = require('../Routes/acc_routes')
 
+const cookieParser = require('cookie-parser')
+
 const cors = require("cors");
 
 const corsOptions = {
@@ -15,6 +17,7 @@ const corsOptions = {
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/api/auth', auth_routes)
 app.use('/api/accounts', acc_routes)
