@@ -225,6 +225,40 @@ router.post('/login', recaptcha.verify, async (req, res) => {
 })
 
 /**
+ * API Route which handles logging out a
+ * user from the service by removing the refresh token
+ * from the user's cookies
+ * 
+ *
+ * Response:
+ * 
+ *  200 - User successfully logged out
+ *  500 - Logout failed due to internal server error
+ * 
+ * *message - message indicating success or failure of the request
+ * ^error - error message if the request failed
+ * 
+ */
+router.post('/logout', async (req, res) => {
+    // clear the refresh token from the user's cookies
+    try {
+        res
+        .status(200)
+        .clearCookie('refreshToken')
+        .json({
+            message: 'User has successfully logged out'
+        })
+    }
+    catch (err) {
+        res.status(500).json({
+            message: err.message,
+            error: err.name
+        })
+    }
+
+})
+
+/**
  * API Route which handles refreshing a
  * user's access token by checking the refresh token
  * and returning a new access token if the refresh token is valid
