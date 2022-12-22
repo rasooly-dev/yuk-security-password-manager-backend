@@ -3,6 +3,7 @@ const app = express()
 
 const auth_routes = require('../Routes/auth_routes')
 const acc_routes = require('../Routes/acc_routes')
+const user_routes = require('../Routes/user_routes')
 
 const cookieParser = require('cookie-parser')
 
@@ -21,6 +22,7 @@ app.use(cookieParser())
 
 app.use('/api/auth', auth_routes)
 app.use('/api/accounts', acc_routes)
+app.use('/api/user', user_routes)
 
 app.listen(4000, () => {
     console.log('Server started on port 4000')

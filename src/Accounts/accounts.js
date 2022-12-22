@@ -20,15 +20,11 @@ const storeAccounts = async (user, accounts) => {
     const { id } = user
 
     // if no accounts were provided, throw an exception
-    if (accounts === undefined || accounts === null) 
+    if (accounts === undefined || accounts === null || accounts === '') 
         throw new NoAccountsProvidedException('No accounts provided')
 
-    // if the account string is empty, set it to an empty string
-    if (accounts === "") 
-        return await database.update('users', { accounts: accounts }, { id })
-
     // otherwise, encrypt the account string and update the database
-    let accounts_to_store = encrypt(accounts)
+    let accounts_to_store = encrypt(JSON.stringify(accounts))
     return await database.update('users', { accounts: accounts_to_store }, { id })
 }
 
@@ -50,7 +46,7 @@ const getAccounts = async (user) => {
         return ""
 
     // otherwise, decrypt the user's accounts and return them
-    const accounts = decrypt(user_accounts.rows[0].accounts)
+    const accounts = JSON.parse(decrypt(user_accounts.rows[0].accounts))
     return accounts
 }
 
