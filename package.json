@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./src/Servers/server.js",
     "dev-start": "nodemon ./src/Servers/server.js",
     "dev-start-test": "nodemon ./src/Test/test.js",
     "dev-acc-test": "node ./src/Accounts/test.js",

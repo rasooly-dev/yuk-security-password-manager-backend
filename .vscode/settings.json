@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/a50fa237-d5c9-42df-a0ab-537c5f67c108/AppServices/subscriptions/a50fa237-d5c9-42df-a0ab-537c5f67c108/resourceGroups/yuk-security-password-management/providers/Microsoft.Web/sites/yuk-security-password-mamangement",
+    "appService.deploySubpath": "."
+}
