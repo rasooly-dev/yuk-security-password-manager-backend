@@ -24,6 +24,6 @@ app.use('/api/auth', auth_routes)
 app.use('/api/accounts', acc_routes)
 app.use('/api/user', user_routes)
 
-app.listen(4000, () => {
-    console.log('Server started on port 4000')
+app.listen(process.send.PORT, () => {
+    console.log(`Server started on port ${process.send.PORT}`)
 })
