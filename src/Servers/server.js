@@ -10,9 +10,9 @@ const cookieParser = require('cookie-parser')
 const cors = require("cors");
 
 const corsOptions = {
-   origin: '*',
+   origin: ['*', 'localhost:3000', 'http://localhost:3000', 'http://localhost:3000/'], // Allow from this origin
    credentials: true,            //access-control-allow-credentials:true
-   optionSuccessStatus: 200
+   optionSuccessStatus: 200,
 }
 
 app.use(cors(corsOptions)) // Use this after the variable declaration
@@ -28,6 +28,8 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.listen(process.env.PORT || 5000, () => {
-    console.log(`Server started on port ${process.env.PORT || 5000}`)
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`)
 })
