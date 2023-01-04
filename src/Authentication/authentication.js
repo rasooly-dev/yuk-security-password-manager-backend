@@ -111,7 +111,7 @@ const authenticateUser = async (reqUser) => {
     })
     .catch(err => {
         console.log(err)
-        throw new err
+        throw new SomethingWentWrongException('Something went wrong while authenticating the user from the database')
     })
 
     // if no user with the given username exists, throw an exception
@@ -199,6 +199,11 @@ function NoSuchUserException(message) {
 function UserAlreadyExistsException(message) {
     this.message = message
     this.name = 'UserAlreadyExistsException'
+}
+
+function SomethingWentWrongException(message) {
+    this.message = message
+    this.name = 'SomethingWentWrongException'
 }
 
 // exports

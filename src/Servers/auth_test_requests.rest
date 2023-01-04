@@ -2,7 +2,7 @@ GET http://localhost:3000/auth/users
 
 ###
 
-POST http://localhost:4000/api/auth/register
+POST https://www.yuksecurity.com/api/auth/register
 Content-Type: application/json
 
     {
@@ -12,26 +12,28 @@ Content-Type: application/json
     }
 
 ###
-POST http://localhost:4000/api/auth/verifyregistry?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2FydWJ5QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoibG9zYXJ1YnkiLCJwYXNzd29yZCI6IiQyYiQxMCRvVWVWUGc4ODM4VUtpMEl6MGUuaGZ1SjRzaW9OVGtZMU5ldGxDV0RYbkR1c2c0L1VJVXdXRyIsImlhdCI6MTY2MTAwMDQ5MywiZXhwIjoxNjYxMDAwNzkzfQ.MkHiiSMtSYhSsil2w_Y225vm-ALPMN7Z_0bjWQMFbBE
+POST https://www.yuksecurity.com/api/auth/verifyregistry?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2FydWJ5QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoibG9zYXJ1YnkiLCJwYXNzd29yZCI6IiQyYiQxMCRvVWVWUGc4ODM4VUtpMEl6MGUuaGZ1SjRzaW9OVGtZMU5ldGxDV0RYbkR1c2c0L1VJVXdXRyIsImlhdCI6MTY2MTAwMDQ5MywiZXhwIjoxNjYxMDAwNzkzfQ.MkHiiSMtSYhSsil2w_Y225vm-ALPMN7Z_0bjWQMFbBE
 
 
 ###
 
-POST http://localhost:4000/api/auth/login
+POST https://www.yuksecurity.com/api/auth/login
 Content-Type: application/json
 
     {
         "username": "losaruby",
-        "password": "loser"
+        "password": "loser",
+        "recaptcha_token": "03AD1IbLDGYVn1LvTsQ8XyotVQifjpfPAY1zBTAcLYJsz7jNvI5fjYR2hgWurGRF6ioe_ns7ZT6--FCXuwuWvDRrcFGPNNTEs2xaa5ngPkxNzIm8eoGgKEd5d6sKEXYedEYibQOUEhiTcS3z2zOfJXNrv-FoV7DFGZKDPoU15kewZaDKhEagAoHt7dmaRFlC2QG16lkrkOgJt9y3gcQNKqNvvC7VAdEtzp-J_M0EskgYFdu7eM9qurzFczIz4pgpNK43FYXdwSFRExtoueE_bu6c2rsdVe52ICKPHCclmkDxWa1ceCWqZL3m0RHDZPQXrHAuYsKFZL4-_rvQb9p9FKeYlSrqIoXLzIzPOPn1seVkLKY192q-oKRPez_SPkyNFKKX-1d3l0S74AEL8PP9pIE2DHtBjiOvFIyJt20vu7k3-fQ0Kw3AQXZY9_yhBG3n2NwF7Z7s9N8RPuJgQ2Ri8sgsm4CWF5KAd-qExUPf0cosGMNL2sbmG_av9jwcjWxZDnM6wqt4Fc8XKcGCvuR6FdlA6BhJiNaoUCoRp56DnQSgsIYJAbKlCH0vTWa8tX018oO58eOtokBKs9"
+
     }
 
 ###
-GET http://localhost:4000/test
+GET https://www.yuksecurity.com/test
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTk3ODIwMDksImV4cCI6MTY1OTc4MjMwOX0.VK7JCkRBw0mDCRbCBiJ2KIj5MO9th5WpukIiOqshpsA
 Content-Type: application/json
 
 ###
-POST http://localhost:4000/api/auth/refresh
+POST https://www.yuksecurity.com/api/auth/refresh
 Content-Type: application/json
 Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2NjA3OTg5ODQsImV4cCI6MTY2MDgwMjU4NH0.ntaqPb_s-VxBxTHQyY40MYR_Pde4Vk4gfohO6SnQ44M
 

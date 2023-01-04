@@ -57,7 +57,7 @@ const verify = async (req, res, next) => {
             // call the next function
             next()
         })
-        .catch(err => {
+        .catch((err) => {
             // if there is an error, throw an exception
             return res.status(500).json({
                 message: 'Internal server error',
