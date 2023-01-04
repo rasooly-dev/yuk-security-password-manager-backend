@@ -14,7 +14,7 @@ const query = async (query, params = []) => {
     // create a new client
     const client = new Client({
         connectionString: process.env.DATABASE_URL,
-        ssl: 'require'
+        ssl: 'true'
     })
     // connect to the database
     await client.connect()
