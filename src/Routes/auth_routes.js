@@ -244,7 +244,11 @@ router.post('/logout', async (req, res) => {
     try {
         res
         .status(200)
-        .clearCookie('refreshToken')
+        .clearCookie('refreshToken', {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None'
+        })
         .json({
             message: 'User has successfully logged out'
         })
