@@ -13,7 +13,8 @@ const { Client } = require('pg')
 const query = async (query, params = []) => {
     // create a new client
     const client = new Client({
-        connectionString: process.env.DATABASE_URL
+        connectionString: process.env.DATABASE_URL,
+        ssl: 'require'
     })
     // connect to the database
     await client.connect()
