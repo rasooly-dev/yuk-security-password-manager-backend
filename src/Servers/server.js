@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser')
 const cors = require("cors");
 
 const corsOptions = {
-   origin: ['*', 'localhost:3000', 'http://localhost:3000', 'http://localhost:3000/'], // Allow from this origin
+   origin: ['*', 'localhost:3000', 'http://localhost:3000'], // Allow from this origin
    credentials: true,            //access-control-allow-credentials:true
    optionSuccessStatus: 200,
 }

@@ -6,9 +6,9 @@ POST https://www.yuksecurity.com/api/auth/register
 Content-Type: application/json
 
     {
-        "email": "losaruby@gmail.com",
-        "username": "losaruby",
-        "password": "loser"
+        "email": "alofiabdul+test@gmail.com",
+        "username": "test",
+        "password": "Th1sis@password"
     }
 
 ###
@@ -21,10 +21,19 @@ POST https://www.yuksecurity.com/api/auth/login
 Content-Type: application/json
 
     {
-        "username": "losaruby",
-        "password": "loser",
-        "recaptcha_token": "03AD1IbLBsykUm7Ac8Od6rJ7hY4bAnikUqUgc1KUnp0aL14BahcEtc9By5VMMYIQk_Ei6rEVqudcK9mkxq3Lz29uGKXvaBHkJpjOmNzJ47bk7mie24lnKtK-XQnMKQAw1U9JdoIqg6jpvTa3-S4k1AmtssDLJOeiQ-pSVYhdOWl3a9ZlmDDW0a5zuWbya6iFm3Rf-HEf8wPHjFRmHnBehDztRSooCSqlqlPLszxfpnLnfmKXb-SVQomn_HF-aMsZ-xzVUqYU4e7GcPIpDbYrNnG0rC5-II-MG4xmqruZ35ip7wYiUXmiU0KG-n3_9XqFaAEklMyrlilN0CVlWXG9sGtNT1yUV4vjxsadz9plcqwOQJ-EMhLwSPzWnGNYn6NQU_nDx-zDvzHguCfejxBCQdlUBg5sjWMT8WD-y3uxVOFs_17oxqyvkJI2Q-HsccD28xhhdNxzqmXQq1jeTXcuZZwOMTXW8LicPtjp7SdUH5zbrs7JDaGSZEMJivNp9pwKHO7Ue314IV8wjqPGuqyM4irP6OPejuSBqtc9-5RJz4mV2zUwVZcg5aAxsetsp3We0YWftLvAlr9Np_xrywiuDh9B-15cy6ADKfkg"
+        "username": "test",
+        "password": "Th1sis@password",
+        "recaptcha_token": "03AD1IbLDOJKlkFUJn1OO1sJB71eFrpAT6ErZ246x_ZkVwOzX4Nq2JZ65ZbrGRarRTdAjBRMO4P4d3wxG0OpIe18FgCD2HdvXZecVGLJrvOLf63-1tETX4GqCaAQbqKzkCNcXFgVZkyS8sUnQHz5IXf4j03TsOr4fwa4i-rEMBBzU1Cr5A2r1m-o23yjuoyfB2AcftePT8nfwyoJZWkgHxdzZlijonjGu_9OXIRTTKln2Yj0lAIpMRvmiOiNSPrQSrTGDYHZGvVUzbAv1P5Q3EIQtub4R91U7Z2xA1FJg5uqnnaZQo2LUkDHNNQiLEhObdDJmwnZYX-GyB_CeR8hsVstX1n_TvDVhtbaemWGEy-J2OF2hJhRahuYoCThZ7f9HC7Qy0pOQL9gKdHw4trxvpOq-Nv5rHkI4xmLVIbU9l15AqLIh0VegCoanFRPAn71qIYD6J9zLfWtD9zl9mAtSiGY9mrZbJmZpsBf_rNRx770v8Oa-Bd9XbnaO14hHYgN8btzeIogodoWT9UPtvNMxEsexpSqvM3_Ih459jD-AsxQncOhD00rvIDw_mONxCSSDD7GfgrQAmNGrW"
 
+    }
+
+###
+
+POST https://www.yuksecurity.com/api/auth/verifyregistry?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsb2ZpYWJkdWwrdGVzdEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6IiQyYiQxMCRnLlMwbzdhVWxwcnAzendnRk1WS2dlcmthelJPRndhRUt2eEpib2Y0WXZjTi92V2NsN1ZCeSIsImlhdCI6MTY3Mjg0OTk3OSwiZXhwIjoxNjcyODUwMjc5fQ.dUq3x0si3vyMY8q2YYc3Z952LIopTURDwboDTRNsq5Q
+Content-Type: application/json
+
+    {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsb2ZpYWJkdWwrdGVzdEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6IiQyYiQxMCRnLlMwbzdhVWxwcnAzendnRk1WS2dlcmthelJPRndhRUt2eEpib2Y0WXZjTi92V2NsN1ZCeSIsImlhdCI6MTY3Mjg0OTk3OSwiZXhwIjoxNjcyODUwMjc5fQ.dUq3x0si3vyMY8q2YYc3Z952LIopTURDwboDTRNsq5Q"
     }
 
 ###

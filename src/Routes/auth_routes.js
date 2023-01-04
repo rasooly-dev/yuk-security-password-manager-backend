@@ -197,7 +197,7 @@ router.post('/login', recaptcha.verify, async (req, res) => {
         .cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: 'Strict'
+            // sameSite: 'Strict'
         })
         .json({
             message: 'User authenticated',
