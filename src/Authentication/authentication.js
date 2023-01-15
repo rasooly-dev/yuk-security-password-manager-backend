@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const database = require('../utils/database')
+import { storeAccounts } from '../Accounts/accounts'
 
 /**
  * Generates a register token for a user which expires in 5 minutes
@@ -77,7 +78,8 @@ const addUser = async (user) => {
         throw new UserAlreadyExistsException('Username or email already exists')
 
     // insert the user into the database
-    return await database.insert('users', { email, username, password, accounts: {} })
+    const addUserQuery = await database.query('INSERT INTO users (email, username, password) VALUES ($1, $2, $3) RETURNING *', [email, username, password])
+    storeAccounts(addUserQuery.rows[0], {})
 }
 
 /**
