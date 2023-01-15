@@ -78,7 +78,7 @@ const addUser = async (user) => {
         throw new UserAlreadyExistsException('Username or email already exists')
 
     // insert the user into the database
-    const addUserQuery = await database.query('INSERT INTO users (email, username, password) VALUES ($1, $2, $3) RETURNING *', [email, username, password])
+    const addUserQuery = await database.query('INSERT INTO users (email, username, password, accounts) VALUES ($1, $2, $3, \'\') RETURNING *', [email, username, password])
     accounts_utils.storeAccounts(addUserQuery.rows[0], {})
 }
 
