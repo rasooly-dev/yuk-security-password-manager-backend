@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const database = require('../utils/database')
-import { storeAccounts } from '../Accounts/accounts'
+const accounts_utils = require('../Accounts/accounts')
 
 /**
  * Generates a register token for a user which expires in 5 minutes
@@ -79,7 +79,7 @@ const addUser = async (user) => {
 
     // insert the user into the database
     const addUserQuery = await database.query('INSERT INTO users (email, username, password) VALUES ($1, $2, $3) RETURNING *', [email, username, password])
-    storeAccounts(addUserQuery.rows[0], {})
+    accounts_utils.storeAccounts(addUserQuery.rows[0], {})
 }
 
 /**
