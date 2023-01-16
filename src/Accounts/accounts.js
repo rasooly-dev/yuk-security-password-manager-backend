@@ -43,7 +43,7 @@ const getAccounts = async (user) => {
 
     // if the user has no accounts, return an empty string
     if (user_accounts.rows[0].accounts === "") 
-        return ""
+        return {}
 
     // otherwise, decrypt the user's accounts and return them
     const accounts = JSON.parse(decrypt(user_accounts.rows[0].accounts))
