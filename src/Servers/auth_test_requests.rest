@@ -52,9 +52,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJ1c2Vyb
 Content-Type: application/json
 
 ###
-POST http://localhost:3500/accounts/update
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2NjAxMjM0ODIsImV4cCI6MTY2MDEyMzc4Mn0.vss7USi-WaEx1QPFRO7B78-PILz_fs0OAuz7AXqkF6U
+POST https://www.yuksecurity.com/api/accounts/update
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkiLCJ1c2VybmFtZSI6InJhc29vbHkiLCJpYXQiOjE2NzM4NDU1NTMsImV4cCI6MTY3Mzg0NTg1M30.5VsXqhDY3RfxyY7hxihF3fOLlUuBiqmmjJeaffaErTk
 Content-Type: application/json
+
+    {
+        "accounts" : {
+            "imageLink": "",
+            "identifier": "test",
+            "password": "test",
+            "description": "test"
+        }
+    }
 
 
 
