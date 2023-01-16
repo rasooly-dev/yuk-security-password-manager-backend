@@ -25,7 +25,7 @@ const storeAccounts = async (user, accounts) => {
 
     // otherwise, encrypt the account string and update the database
     let accounts_to_store = encrypt(JSON.stringify(accounts))
-    return await database.update('users', { accounts: accounts_to_store }, { id })
+    return await database.query('UPDATE users SET accounts = $1 WHERE id = $2', [accounts_to_store, id])
 }
 
 /**
